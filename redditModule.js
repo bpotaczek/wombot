@@ -97,7 +97,6 @@ class RedditScheduler {
         if (!this.scheduledJob) {
             this.scheduledJob = schedule.scheduleJob(cron, this.getPosts.bind(this));
             this.persistance.getObject(storageKey).then((c) => {
-                console.log('Saved subscriptions', c);
                 if (c && c.subscriptions) {
                     c.subscriptions.forEach((sub) => {
                         const channel = client.channels.filter(x => x.name === sub.channelName).first();
